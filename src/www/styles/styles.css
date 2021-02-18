@@ -4425,7 +4425,7 @@ input[type="button"].btn-block {
   align-items: center;
   -ms-flex-pack: justify;
   justify-content: space-between;
-  padding: 3rem 3rem;
+  padding: 1rem 1rem;
 }
 
 .navbar .container,
@@ -8398,6 +8398,17 @@ button.bg-dark:focus {
   margin-left: 3rem !important;
 }
 
+.ml-6,
+.mx-6 {
+  margin-left: 4.5rem !important;
+}
+
+
+.ml-7,
+.mx-7 {
+  margin-left: 7rem !important;
+}
+
 .p-0 {
   padding: 0 !important;
 }
@@ -10621,7 +10632,7 @@ table-primary, table-secondary, table-success, table-info, table-warning, table-
 .Titulo-Pagina1{
   color: #258cf2;
   font-size: 75px;
-  margin-top: 15%;
+  margin-top: 10%;
   line-height: 1;
   text-align: center;
   font-weight: 700;
@@ -10652,8 +10663,11 @@ table-primary, table-secondary, table-success, table-info, table-warning, table-
   padding-left: 7.9%;
   padding-right: 7.9%; 
 }
+#Link-Produto{
+  margin-top: 12.5%;
+}
 
-.Texto-Pagina2{
+#Texto-Pagina2{
   color: black;
   font-size: 50px;
   margin-top: 18%;
@@ -10662,16 +10676,17 @@ table-primary, table-secondary, table-success, table-info, table-warning, table-
   font-weight: 700;
 }
 
-.Texto-Pagina2.Titulos-Home{
+#Texto-Pagina2.Titulos-Home{
   color: black;
   font-size: 50px;
   margin-top: 34%;
+  margin-bottom: 15%;
   line-height: 1;
   text-align: center;
   font-weight: 700;
 }
 
-.Texto-Pagina2 .monitor{
+#Texto-Pagina2 .monitor{
   padding-top: 1%;
   display: block;
   margin-left: auto;
@@ -10679,7 +10694,7 @@ table-primary, table-secondary, table-success, table-info, table-warning, table-
   width: 23%;
 }
 
-.Texto-Pagina2 .titulo2{
+#Texto-Pagina2 .titulo2{
   color: black;
   font-size: 24px;
   margin-top: 2.5%;
@@ -10698,7 +10713,7 @@ table-primary, table-secondary, table-success, table-info, table-warning, table-
   font-weight: 900;
 }
 
-.Texto-Pagina2 .texto{
+#Texto-Pagina2 .texto{
   color: rgb(134, 134, 134);
   font-size: 21px;
   margin-top: 2.5%;
@@ -10709,7 +10724,7 @@ table-primary, table-secondary, table-success, table-info, table-warning, table-
 }
 
 
-.Texto-Pagina2 .btn-primary{
+#Texto-Pagina2 .btn-primary{
   font-size: 24px;
   font-weight: 500;
   padding-left: 4%;
@@ -10717,7 +10732,8 @@ table-primary, table-secondary, table-success, table-info, table-warning, table-
   text-align: center; 
 }
 
-.Texto-Pagina3 .Titulos-Home{
+
+#Texto-Pagina3 .Titulos-Home{
   color: black;
   font-size: 50px;
   margin-top: 9%;
