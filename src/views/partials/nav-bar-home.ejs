@@ -8,14 +8,14 @@
       <h2 class="titulo-nav-home">Home</h2>
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
-        </ul>
-        <ul class="navbar-nav mr-2">
-          <p class="utilizador-home"><%= user %></p>
-        </ul>
-        <ul class="navbar-nav ml-3">
-          <li class="nav-item mr-5">
-            <a href="/signout" class="btn btn-primary-navbar">Sair</a>
-          </li>
+        </ul> 
+        <ul class="nav-item dropdown mt-3 mr-5">
+          <a class="dropdown-toggle btn btn-primary-navbar" data-toggle="dropdown" href="#">(Nome Utilizador)</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#"> <i class="fas fa-id-badge pr-9"></i>Perfil</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#"> <i class="fas fa-sign-out-alt pr-9"></i> Sair</a>
+          </div>
         </ul>
       </div>
     </nav>

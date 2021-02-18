@@ -6,7 +6,7 @@
 
     "dbOptions" : {
         "host": "localhost",
-        "user": "root",
+        "user": "samuel",
         "database": "life_guardian",
         "password": ""
     }
