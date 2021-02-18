@@ -1,0 +1,57 @@
+<%- include('partials/nav-bar-index'); %>
+  <br></br>
+  <main>
+    <div class="container autent-box mt-8">
+      <div class="row mt-5">
+        <div class="col-md m-auto">
+          <div class="card card-body">
+            <table>
+              <tr>
+                <td class="pl-5">
+                  <h3 class="text-left text-dark mb-3">
+                    <i class="fas fa-user"></i>&nbsp; Registar
+                  </h3>
+                  <%- include ("./partials/messages"); %>
+                  <br>
+                  <form action="/signup" method="POST">
+                    <div class="form-group text-dark">
+                      <label for="nome">Nome</label>
+                      <input type="name" id="nome" name="nome" class="form-control"
+                        placeholder="Introduza o primeiro e último nome"
+                        value="<%= typeof nome != 'undefined' ? nome : '' %>" required/>
+                    </div>
+                    <div class="form-group text-dark">
+                      <label for="email">Email</label>
+                      <input type="email" id="email" name="email" class="form-control"
+                        placeholder="Introduza o seu email" value="<%= typeof email != 'undefined' ? email : '' %>" required/>
+                    </div>
+                    <div class="form-group text-dark">
+                      <label for="password">Password</label>
+                      <input type="password" id="password" name="password" class="form-control"
+                        placeholder="Introduza uma password" required/>
+                    </div>
+                    <div class="form-group text-dark">
+                      <label for="password2">Confirmar Password</label>
+                      <input type="password" id="password2" name="password2" class="form-control"
+                        placeholder="Confirme a sua password" required/>
+                    </div>
+                    <br>
+                    <button type="submit" class="btn btn-primary btn-block mt-4 pt-2">
+                      Submeter
+                    </button>
+                  </form>
+                  <p class="text-dark lead mt-4">Já tem uma conta? &nbsp;<a class="text-primary font-weight-bolder" href="/signin">Entrar</a></p>
+                </td>
+                <td>
+                  <img class="card-img pl-5 pb-5 pt-5 pr-0" src="images/register_img.png">
+                </td>
+              </tr>
+            </table>
+          </div>
+          <br><br>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <%- include('partials/footer'); %>

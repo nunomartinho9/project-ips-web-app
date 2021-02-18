@@ -1,0 +1,13 @@
+{
+    "server" : {
+        "port" : 4000,
+        "favicon" : "favicon.ico"
+    },
+
+    "dbOptions" : {
+        "host": "localhost",
+        "user": "root",
+        "database": "life_guardian",
+        "password": ""
+    }
+}

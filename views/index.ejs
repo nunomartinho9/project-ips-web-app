@@ -1,0 +1,67 @@
+<style>
+  body {
+    background-image: url("images/background-index.png");
+    background-attachment: local;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position-y: -40px;
+  }
+</style>
+<%- include('partials/nav-bar-index'); %>
+<main>
+  <div class="Titulo-Pagina1">
+    <p>Um monitor vital.</p>
+    <p>Seguro e Pessoal.</p>
+  </div>
+
+  <div class="Texto-Pagina1">
+    <p>O seu monitor de vigilância pessoal para que nada</p>
+    <p>na sua vida lhe escape.</p>
+
+    <a href="" class="btn btn-secondary"> Login</a>
+    <br>
+    <a href="" class="btn btn-primary"> Registar</a>
+  </div>
+
+  <div class="Texto-Pagina2">
+    <p class=Titulos-Home>O nosso produto.</p>
+    <p class="linha">___________</p>
+    <a><img class="monitor" src="images/monitor.png"></a>
+    <p class="titulo2">Monitor de Vigilância Ativa 24H/7</p>
+    <p class="texto">Um monitor de vigilância 24 horas por dia, para que possa vigiar quem lhe é mais importante.<br>
+       Equipado com sensores de movimento, temperatura e humidade.<br>
+       Este monitor é aquilo que faltava na sua vida.</p>
+    <a href="" class="btn btn-primary">Ler mais</a>
+  </div>
+
+  <div class="Texto-Pagina3">
+    <p class=Titulos-Home>Serviços para si.</p>
+    <p class="linha">___________</p>
+  </div><br><br>
+  <table id="boxes">
+    <tr>
+      <td id="leftbox">
+        <i class="fas fa-anchor"></i><br><br>
+        <h2>Subscrição.</h2><br>
+        <p class="textinho">Um serviço de subscrição para que possa usufruir do nosso 
+          produto por um período de 4 anos sem ter de o adquirir.</p>
+      </td>
+      <td id="middlebox">
+        <i class="far fa-flag"></i><br><br>
+        <h2>Apoio ao Cliente.</h2><br>
+        <p class="textinho">Precisa de ajuda? 
+          Fale com a nossa equipa.<br>
+          Estamos disponíveis para ajudar 365 dias por ano.<br>
+          <b class="font-weight-bold">Contactos e redes sociais abaixo!</b></p>
+      </td>
+      <td id="rightbox">
+        <i class="fas fa-award"></i><br><br>
+        <h2>Garantia.</h2><br>
+        <p class="textinho">Mínimo de 2 anos de garantia para que o seu produto lhe traga segurança e confiança até ao final do seu uso.</p>
+      </td>
+    </tr>
+  </table>
+</main>
+
+<%- include('partials/footer'); %>
