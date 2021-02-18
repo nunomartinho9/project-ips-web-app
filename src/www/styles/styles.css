@@ -3302,21 +3302,21 @@ input[type="button"].btn-block {
 .dropdown-menu {
   position: absolute;
   top: 100%;
-  left: 0;
+  left: -13%;
   z-index: 1000;
   display: none;
-  float: left;
-  min-width: 10rem;
+  float: right;
+  min-width: 15rem;
   padding: 0.5rem 0;
   margin: 0.125rem 0 0;
   font-size: 1.063rem;
-  color: #343a40;
-  text-align: left;
+  color: black;
+  text-align: right;
   list-style: none;
   background-color: #fff;
   background-clip: padding-box;
   border: 1px solid rgba(0, 0, 0, 0.15);
-  border-radius: 0.25rem;
+  border-radius: 0.8rem;
 }
 
 .dropdown-menu-left {
@@ -3480,6 +3480,7 @@ input[type="button"].btn-block {
   color: #212529;
   text-align: inherit;
   white-space: nowrap;
+  font-size: 20px;
   background-color: transparent;
   border: 0;
 }
@@ -8553,6 +8554,10 @@ button.bg-dark:focus {
   padding-left: 3rem !important;
 }
 
+.pr-9{
+  padding-right: 8rem !important;
+}
+
 .m-n1 {
   margin: -0.25rem !important;
 }
@@ -10993,7 +10998,7 @@ font-weight: 500;
 }
 
 .Pagina2-home{
-  margin-top: -15%;
+  margin-top: -10%;
   background-color: #258cf2;
   padding-bottom: 2%;
 }
@@ -11103,6 +11108,7 @@ font-weight: 500;
   padding: 1.6%;
   font-size: 26px;
   background-color: white;
+  margin-top: 2%;
   position: absolute;
   margin-left: 23%;
   margin-right: 27%;
@@ -11299,4 +11305,27 @@ font-weight: 500;
   font-size: 23px;
   font-weight: 600;
   margin-right: 41.5%;
+}
+
+
+.botao-monitores-graficos{
+  padding-left: 5%;
+  padding-right: 5%;
+  margin-left: 42%;
+  margin-right: 39%;
+  margin-top: -5%;
+  font-size: 23px;
+  font-weight: 600;
+ 
+}
+
+
+.tabela-caixa1-graficos{
+  width: 80%;
+  height: 45%;
+  font-size: 42px;
+  font-weight: 600;
+  margin: auto;
+  text-align: center;
+  border: solid 1.5px black;
 }
