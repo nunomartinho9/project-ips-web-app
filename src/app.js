@@ -7,7 +7,7 @@ const options = require("./config/options.json").server;
 const passport = require("passport");
 require("./config/passport")(passport);
 var favicon = require('serve-favicon');
-
+const path = require("path");
 const app = express();
 
 /**
@@ -17,7 +17,7 @@ const app = express();
 // Templates EJS
 app.use(expressLayouts);
 app.set("view engine", "ejs");
-
+app.set('views', path.join(__dirname,"views"));
 
 // Static
 app.use(express.static("www"));
