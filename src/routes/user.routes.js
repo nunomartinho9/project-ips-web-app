@@ -7,9 +7,11 @@ const userController = require("../controllers/user.controller");
 */
 router.post("/signup", userController.createUser);
 router.post("/signin", userController.signIn);
+router.get("/signout", userController.signOut);
 
+//android
 router.post("/mobile-signin", userController.mobileSignIn);
 router.post("/mobile-signout", userController.mobileSignOut);
-router.get("/signout", userController.signOut);
+
 
 module.exports = router;
