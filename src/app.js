@@ -57,7 +57,7 @@ app.use(function (req, res, next) {
  */
 
  // Roteamento
-app.use(require("./routes/web.routes"));
+app.use(require("./routes/index.routes"));
 app.use(require("./routes/user.routes"));
 app.use(require("./routes/monitor.routes"));
 app.use(require("./routes/data.routes"));
