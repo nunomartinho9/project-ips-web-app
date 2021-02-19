@@ -1,0 +1,36 @@
+
+<header>
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-light">
+    <a class=" navbar-brand ml-6 pl-3 mr-0 pr-lg-2 mr-lg-4" href="/"><img class="w-75" src="images/favicon.ico"></a>
+    <div id="nav-home">
+      <a href="/" class="btn-secondary-navbar underline">Home</a>
+      <a href="/contacts" class="btn-secondary-navbar underline">Contatos</a>
+      <% if(typeof user != 'undefined'){ %>
+        <a href="/dashboard" class="btn-secondary-navbar underline">Dashboard</a>
+        <% }%>
+    </div>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav mr-auto">
+      </ul>
+      <% if(typeof user != 'undefined'){ %>
+        <ul class="nav-item dropdown mt-3 mr-5">
+          <a class="dropdown-toggle btn btn-primary-navbar-h" data-toggle="dropdown" href="#">Olá, <b>(Nome Utilizador)</b></a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#"> <i class="fas fa-id-badge pr-3"></i>Perfil</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="/signout"> <i class="fas fa-sign-out-alt pr-25"></i>Sair</a>
+          </div>
+        </ul>
+        <% }else{ %>
+      <ul class="navbar-nav mr-2">
+        <a href="/signin" class="btn btn-secondary-navbar"> Login</a>
+      </ul>
+      <ul class="navbar-nav ml-3">
+        <li class="nav-item mr-5">
+          <a href="/signup" class="btn btn-primary-navbar"> Registar</a>
+        </li>
+      </ul>
+      <% } %>
+    </div>
+  </nav>
+</header>
