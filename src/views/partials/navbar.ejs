@@ -6,7 +6,7 @@
       <a href="/" class="btn-secondary-navbar underline">Home</a>
       <a href="/contacts" class="btn-secondary-navbar underline">Contatos</a>
       <% if(typeof user != 'undefined'){ %>
-        <a href="/dashboard" class="btn-secondary-navbar underline">Dashboard</a>
+        <a href="/dashboard" class="btn-secondary-navbar underline" onclick="'info.showDashboard();'">Dashboard</a>
         <% }%>
     </div>
     <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -14,9 +14,9 @@
       </ul>
       <% if(typeof user != 'undefined'){ %>
         <ul class="nav-item dropdown mt-3 mr-5">
-          <a class="dropdown-toggle btn btn-primary-navbar-h" data-toggle="dropdown" href="#">Olá, <b>(Nome Utilizador)</b></a>
+          <a class="dropdown-toggle btn btn-primary-navbar-h" data-toggle="dropdown" href="#"> Olá, <%= user.name %> </a>
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="#"> <i class="fas fa-id-badge pr-3"></i>Perfil</a>
+            <a class="dropdown-item" href="/dashboard/profile"> <i class="fas fa-id-badge pr-3"></i>Perfil</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="/signout"> <i class="fas fa-sign-out-alt pr-25"></i>Sair</a>
           </div>

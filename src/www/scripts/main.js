@@ -1,6 +1,7 @@
 window.onload = function (event) {
     var info = new Information("divInformation");
-
+    info.getMonitors();
+    info.showDashboard();
     window.info = info;
 };
 
@@ -28,12 +29,39 @@ function Monitor(monitor_id, user_id, title) {
     this.title = title;
 }
 
+//Colocar o titulo HOME, limpar div
+Information.prototype.showDashboard = function () {
+    document.getElementById("headerTitle").textContent="Dashboard";
+    document.getElementById("monitorForm").style.display="none";
+    var table = document.createElement("table");
+    table.id="tableMonitor";
+    table.classList.add("table", "table-hover");
+    table.appendChild(tableLine(new Monitor(),true));
+    for(var i=0;i<this.monitors.length;i++){
+        table.appendChild(tableLine(this.monitors[i],false));
+    }
+    var divTable = document.createElement("divTable");
+    divTable.setAttribute("id", "divTable");
+    divTable.appendChild(table);
+
+    //butao add eventHandler
+    function newMonitorEventHandler(){
+        replaceChilds("divTable",document.createElement("div"));
+        document.getElementById("monitorForm").action="javascript: info.processingMonitor('create');";
+        document.getElementById("monitorForm").style.display="block";
+       
+    }
+    createButton(divTable, newMonitorEventHandler, "Add Monitor", "btnCreate");
+
+    replaceChilds(this.id,document.createElement("div"));
+};
 
 /**
  * Função genérica que cria um botão HTML, dá-lhe um evento e coloca-o na árvore de nós
  * @param {HTMLElement} fatherNode - nó pai do botão
  * @param {function} eventHandler - evento do botão.
  * @param {String} value - texto do botão.
+ * @param {String} id - id do botão.
  */
 function createButton(fatherNode, eventHandler, value, id){
     var button = document.createElement("input");
@@ -92,3 +120,18 @@ function createCellCheckbox(){
     td.appendChild(check);
     return td;
 }
+
+Information.prototype.getMonitors = function (){
+    var monitors = this.monitors;
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "http://localhost:4000/dashboard/monitors", true);
+    xhr.onreadystatechange = function () {
+        if ((this.readyState === 4) && (this.status === 200)) {
+            var response = JSON.parse(xhr.responseText);
+            response.monitor.forEach(function(current){
+                monitors.push(current);
+            });
+        }
+    };
+    xhr.send();
+};
