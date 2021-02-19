@@ -1,6 +1,18 @@
 <%- include('partials/navbar'); %>
 
-<div class="divInformation"></div>
+<main>
+  <br><br><br><br><br><br><br><br><br>
+    <h2 id="headerTitle" class="text-center mb-3"></h2>
+    <div class="divInformation"></div>
+    <form action="javascript: info.processingMonitor('create');" id="monitorForm">
+      <div class="form-group">
+        <input type="text" id="code" name="code" class="form-control" value="" required>
+        <input type="text" id="title" name="title" class="form-control" value="" required>
+        <input id="addMonitor" type="submit" value="Adicionar Monitor">
+      </div>
+    </form>
+</main>
+
 <!--
   <div class="Pagina1-menu">
       <div class="Titulo-Pagina1-menu">

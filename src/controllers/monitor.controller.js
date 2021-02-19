@@ -3,14 +3,15 @@ const Monitor = require("../models/MonitorModel");
 class MonitorController {
 
     getAllMonitorsById(req, res) {
-        Monitor.findOne({user_id : req.user[0].user_id}, function(err, result) {
-            if (err) {
-                console.log(err);
-                res.sendStatus(404);
-            }
-            res.json({"monitor": result});
-        });
-
+        if(typeof req.user != 'undefined') {
+            Monitor.findOne({user_id : req.user[0].user_id}, function(err, result) {
+                if (err) {
+                    console.log(err);
+                    res.sendStatus(404);
+                }
+                res.json({"monitor": result});
+            });
+        }
     }
 
     getMonitorById(req, res) {

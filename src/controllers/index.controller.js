@@ -16,7 +16,7 @@ class IndexController {
     }
 
     renderDashboard(req, res){
-      res.render("dashboard", {titleDocument : "Dashboard", user: req.user});
+      res.render("dashboard", {titleDocument : "Dashboard", user: req.user[0]});
   }
 
     renderViewMonitor(req, res){
