@@ -2637,6 +2637,46 @@ fieldset:disabled a.btn {
   box-shadow: 0 0 0 0.2rem rgba(97, 149, 239, 0.5);
 }
 
+.btn-primary-navbar-h {
+  padding-left: 21px;
+  padding-right: 21px;
+  font-size: 20px;
+  font-weight: 500;
+  color: black;
+  background-color: none;
+  border-color: none;
+}
+
+.btn-primary-navbar-h:hover {
+  color: rgb(31, 31, 31);
+  background-color: none;
+  border-color: none;
+}
+
+.btn-primary-navbar-h:focus, .btn-primary-navbar-h.focus {
+  color: rgb(31, 31, 31);
+  background-color: none;
+  border-color: none;
+  box-shadow: none;
+}
+
+.btn-primary-navbar-h.disabled, .btn-primary-navbar-h:disabled {
+  color: rgb(31, 31, 31);
+  background-color:none;
+  border-color: none;
+}
+
+.btn-primary-navbar-h:not(:disabled):not(.disabled):active, .btn-primary-navbar-h:not(:disabled):not(.disabled).active,
+.show > .btn-primary-navbar-h.dropdown-toggle {
+  color: rgb(31, 31, 31);
+  background-color: none;
+  border-color: none;
+}
+
+.btn-primary-navbar-h:not(:disabled):not(.disabled):active:focus, .btn-primary-navbar-h:not(:disabled):not(.disabled).active:focus,
+.show > .btn-primary.dropdown-toggle:focus {
+  box-shadow: none;
+}
 .btn-secondary-navbar {
   padding-left: 32px;
   padding-right: 32px;
@@ -3311,7 +3351,7 @@ input[type="button"].btn-block {
   margin: 0.125rem 0 0;
   font-size: 1.063rem;
   color: black;
-  text-align: right;
+  text-align: left;
   list-style: none;
   background-color: #fff;
   background-clip: padding-box;
@@ -4427,6 +4467,11 @@ input[type="button"].btn-block {
   -ms-flex-pack: justify;
   justify-content: space-between;
   padding: 1rem 1rem;
+}
+
+
+.navbar-home{
+  padding: 0.4rem 0.4rem;
 }
 
 .navbar .container,
@@ -8472,6 +8517,11 @@ button.bg-dark:focus {
   padding-right: 0.5rem !important;
 }
 
+.pr-25,
+.px-2 {
+  padding-right: 0.7rem !important;
+}
+
 .pb-2,
 .py-2 {
   padding-bottom: 0.5rem !important;
@@ -10952,14 +11002,6 @@ table-primary, table-secondary, table-success, table-info, table-warning, table-
   background-color: white;
   border-radius: 100%;
   text-decoration: none;
-}
-
-.titulo-nav-home{
-  padding-top: 0.5%;
-  margin-left: 5%;
-  margin-right: 5%;
-  width: 10%;
-  text-align: center;
 }
 
 .utilizador-home{
