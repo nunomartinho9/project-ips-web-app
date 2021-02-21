@@ -1,7 +1,7 @@
 # project-ips-web-app
 My web app for my UNI final project.
 
-DATABASE CONFIG:
+✍ DATABASE CONFIG:
 
 👉 Create the .env file in the main directory
 
@@ -17,4 +17,4 @@ DATABASE CONFIG:
              PORT=4000
              FAVICON=favicon.ico
 
-👉 After each '=' add the corresponding data
+👏 Done! 
