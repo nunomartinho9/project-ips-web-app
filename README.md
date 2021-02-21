@@ -18,7 +18,7 @@
              FAVICON=favicon.ico
 
 
-👉 Install dependencies
+👉 Install all the dependencies
 `npm install`
 
 👉 Run the server locally
