@@ -1,7 +1,7 @@
 # project-ips-web-app
 My web app for my UNI final project.
 
-✍ DATABASE CONFIG:
+### CONFIG:
 
 👉 Create the .env file in the main directory
 
@@ -16,5 +16,15 @@ My web app for my UNI final project.
              # Server Config
              PORT=4000
              FAVICON=favicon.ico
+
+
+👉 Install dependencies
+`npm install`
+
+👉 Run the server locally
+`npm start`
+
+👉 Run the server locally in dev mode
+`npm run dev`
 
 👏 Done! 
