@@ -19,6 +19,10 @@ class IndexController {
       res.render("dashboard", {titleDocument : "Dashboard", user: req.user[0]});
   }
 
+  renderProfile(req, res) {
+    res.render("profile", {titleDocument : "Perfil", user: req.user[0]});
+  }
+
     renderViewMonitor(req, res){
       res.render("dashboard-view-monitor", {titleDocument : "Monitores", user: req.user});
   }

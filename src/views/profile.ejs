@@ -1,0 +1,22 @@
+<%- include('partials/navbar'); %>
+
+<% if(typeof user != 'undefined') { %>
+    <h1>Olá, <%= user.name %>!</h1>
+    <hr class="my-4">
+    <h3>O seu perfil:</h3>
+        <div class="form-group">
+            <label for="type">Seu Id</label>
+            <p class="lead"><%= user.user_id %></p>
+        </div>
+        <div class="form-group">
+            <label for="type">Nome</label>
+            <p class="lead"><%= user.name %></p>
+        </div>
+        <div class="form-group">
+            <label for="type">Seu Email</label>
+            <p class="lead"><%= user.email %></p>
+        </div>
+
+<% }%>
+
+<%- include('partials/footer'); %>
