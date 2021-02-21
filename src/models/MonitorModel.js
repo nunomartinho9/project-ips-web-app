@@ -1,7 +1,14 @@
 const mysql = require("mysql");
-const options = require("../config/options").dbOptions;
+const dotenv = require("dotenv");
 const commonUtils = require("../utils/common.utils");
-var conn = mysql.createConnection(options);
+
+dotenv.config();
+var conn = mysql.createConnection({
+  host: process.env.HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASS,
+  database: process.env.DB_DATABASE
+});
 
 class MonitorModel {
 

@@ -3,12 +3,16 @@ const bodyParser = require("body-parser");
 const expressLayouts = require("express-ejs-layouts");
 const flash = require("connect-flash");
 const session = require("express-session");
-const options = require("./config/options.json").server;
+const dotenv = require('dotenv');
 const passport = require("passport");
 require("./config/passport")(passport);
 var favicon = require('serve-favicon');
 const path = require("path");
 const app = express();
+
+//Settings
+dotenv.config();
+const port = Number(process.env.PORT || 4000);
 
 /**
  * Middleware
@@ -22,7 +26,7 @@ app.set('views', path.join(__dirname,"views"));
 // Static
 app.use(express.static("www"));
 app.use(express.static(__dirname + '/www'));
-app.use(favicon(__dirname + `/www/images/${options.favicon}`));
+app.use(favicon(__dirname + `/www/images/${process.env.FAVICON}`));
 
 // Body Parser
 app.use(bodyParser.json());
@@ -63,7 +67,7 @@ app.use(require("./routes/monitor.routes"));
 app.use(require("./routes/data.routes"));
 
 //Por o servidor á escuta
-app.listen(options.port, function() {
-    console.log(`Server running at http://localhost:${options.port}`);
+app.listen(port, function() {
+    console.log(`🚀 Server running at http://localhost:${port}`);
 });
 
