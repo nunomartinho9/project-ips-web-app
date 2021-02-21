@@ -1,5 +1,6 @@
 window.onload = function (event) {
     var info = new Information("divInformation");
+    info.loader();
     info.getMonitors();
     info.showDashboard();
     window.info = info;
@@ -27,6 +28,12 @@ function Monitor(monitor_id, user_id, title) {
     this.monitor_id = monitor_id;
     this.user_id = user_id;
     this.title = title;
+}
+
+Information.prototype.loader = function() {
+    var preloader = document.querySelector('.lds-ripple-page');
+    preloader.classList.remove('active');
+    setTimeout(() => { preloader.remove(); }, 3000);
 }
 
 //Colocar o titulo HOME, limpar div
