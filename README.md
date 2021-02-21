@@ -3,9 +3,9 @@ My web app for my UNI final project.
 
 DATABASE CONFIG:
 
-👉 Create .env file in the main directory
+👉 Create the .env file in the main directory
 
-👉 Add:     
+👉 Copy the following lines, and update the file with your MySQL host, db_username, password and db_name:
 
              # DB Config
              HOST=
@@ -14,7 +14,7 @@ DATABASE CONFIG:
              DB_DATABASE=
              
              # Server Config
-             PORT=
-             FAVICON=
+             PORT=4000
+             FAVICON=favicon.ico
 
-👉 After each '=' add the corresponding data;
+👉 After each '=' add the corresponding data
