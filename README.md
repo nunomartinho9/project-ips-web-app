@@ -1,11 +1,11 @@
 # project-ips-web-app
-My web app for my UNI final project.
+**My web app for my UNI final project.**
 
 ### CONFIG:
 
 👉 Create the .env file in the main directory
 
-👉 Copy the following lines, and update the file with your MySQL host, db_username, password and db_name:
+👉 Copy the following lines, and update the file with your MySQL host, username, password and database name:
 
              # DB Config
              HOST=
