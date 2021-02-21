@@ -12,30 +12,28 @@
                                         <i class="fas fa-sign-in-alt"></i>&nbsp; Entrar
                                     </h3>
                                     <%- include ("./partials/messages"); %>
-                                    <br>
-                                    <form action="/signin" method="POST">
-                                        <div class="form-group text-white">
-                                            <label for="email">Email</label>
-                                            <input type="email" id="email" name="email" class="form-control"
-                                                placeholder="Introduza o seu email" required/>
-                                        </div>
-                                        <div class="form-group text-white">
-                                            <label for="password">Password</label>
-                                            <input type="password" id="password" name="password" class="form-control"
-                                                placeholder="Introduza a sua password" required/>
-                                        </div>
                                         <br>
-                                        <input type="checkbox" id="keepSession" class="ml-1">
-                                        <label for="keepSession" class="text-white pl-2">Manter sessão
-                                            iniciada</label><br>
-                                        <br>
-                                        <button type="submit" class="btn btn-secondary btn-block">Validar</button>
-                                    </form>
-
-                                    <p class="text-white lead mt-5">
-                                        Ainda não tem conta? &nbsp;<a class="text-dark font-weight-bolder"
-                                            href="/signup">Registar</a>
-                                    </p>
+                                        <form action="/signin" method="POST">
+                                            <div class="form-group text-white">
+                                                <label for="email">Email</label>
+                                                <input type="email" id="email" name="email" class="form-control"
+                                                    placeholder="Introduza o seu email" required />
+                                            </div>
+                                            <div class="form-group text-white">
+                                                <label for="password">Password</label>
+                                                <input type="password" id="password" name="password" autocomplete="off"
+                                                    class="form-control" placeholder="Introduza a sua password"
+                                                    required />
+                                            </div>
+                                            <br>
+                                            <button type="submit" class="btn btn-secondary btn-block">Validar</button>
+                                            
+                                        </form>
+                                       
+                                        <p class="text-white lead mt-5">
+                                            Ainda não tem conta? &nbsp;<a class="text-dark font-weight-bolder"
+                                                href="/signup">Registar</a>
+                                        </p>
                                 </td>
                                 <td>
                                     <img class="card-img pl-5 pb-5 pt-5 pr-0" src="images/login_img.png">
