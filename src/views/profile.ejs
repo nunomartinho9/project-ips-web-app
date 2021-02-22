@@ -1,21 +1,25 @@
 <%- include('partials/navbar'); %>
 
 <% if(typeof user != 'undefined') { %>
+    <div class="profile">
     <h1>Olá, <%= user.name %>!</h1>
-    <hr class="my-4">
-    <h3>O seu perfil:</h3>
+    <hr style="height: 1px; width: 100%; background-color:azure; margin-top: 2%"/>
+    <h2 class="Titulo-Profile">O seu perfil:</h2>
         <div class="form-group">
-            <label for="type">Seu Id</label>
+            <label for="type">Seu Id:</label>
             <p class="lead"><%= user.user_id %></p>
         </div>
+        <hr style="height: 1px; width: 20%; margin-left:0; background-color:azure"/>
         <div class="form-group">
-            <label for="type">Nome</label>
+            <label for="type">Nome:</label>
             <p class="lead"><%= user.name %></p>
         </div>
+        <hr style="height: 1px; width: 30%; margin-left:0; background-color:azure"/>
         <div class="form-group">
-            <label for="type">Seu Email</label>
+            <label for="type">Seu Email:</label>
             <p class="lead"><%= user.email %></p>
         </div>
+    </div>
 
 <% }%>
 
