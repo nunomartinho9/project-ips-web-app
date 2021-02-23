@@ -1,28 +1,34 @@
+/**
+ * Função que será executada quando a página estiver toda carregada, criando a variável global "info" com um objeto Information
+ * Aproveitamos ainda para solicitar ao servidor o carregamento de dados de forma assincrona(ajax)
+ * @memberof window
+ * @params {Event} event - objeto que representará o evento
+ */
 window.onload = function (event) {
     var info = new Information("divInformation");
     info.loader();
-    info.getMonitors();
-    info.showDashboard();
+    info.getTickets();
+    info.showHome();
     window.info = info;
 };
 
-/**
- * @class Guarda toda informação
- * @constructs Informacao
- * @param {string} id - id do elemento HTML que contém a informação.
- * 
- * @property {monitors[]} monitors  - Array de objetos do tipo Monitor, para guardar todos os monitores do user
- */
+/** 
+* @class Guarda toda informação
+* @constructs Informacao
+* @param {string} id - id do elemento HTML que contém a informação.
+* 
+* @property {string} id - id do elemento HTML que contém a informação.
+* @property {tickets[]} tickets - Array de objetos do tipo Ticket, para guardar todos os tickets do nosso sistema
+*/
 function Information(id) {
     this.id = id;
     this.monitors = [];
 };
 
 /**
- * 
  * @param {*} monitor_id 
  * @param {*} user_id 
- * @param {*} title 
+ * @param {*} title
  */
 function Monitor(monitor_id, user_id, title) {
     this.monitor_id = monitor_id;
@@ -33,17 +39,28 @@ function Monitor(monitor_id, user_id, title) {
 Information.prototype.loader = function() {
     var preloader = document.querySelector('.lds-ripple-page');
     preloader.classList.remove('active');
-    setTimeout(() => { preloader.remove(); }, 3000);
+    setTimeout(() => { preloader.remove(); }, 000);
 }
 
 //Colocar o titulo HOME, limpar div
-Information.prototype.showDashboard = function () {
-    document.getElementById("headerTitle").textContent="Dashboard";
+Information.prototype.showHome = function () {
+    document.getElementById("headerTitle").textContent="Home";
     document.getElementById("monitorForm").style.display="none";
+    
+    replaceChilds(this.id,document.createElement("div"));
+};
+
+
+//Mostrar todos os tickets, criar tabela e botôes
+Information.prototype.showTickets = function () {
+   document.getElementById("headerTitle").textContent="Tickets";
+   var ticketForm = document.getElementById("monitorForm").style.display="none";
     var table = document.createElement("table");
-    table.id="tableMonitor";
+    table.id="tableTicket";
     table.classList.add("table", "table-hover");
     table.appendChild(tableLine(new Monitor(),true));
+
+    console.log(this.monitors[0]);
     for(var i=0;i<this.monitors.length;i++){
         table.appendChild(tableLine(this.monitors[i],false));
     }
@@ -51,24 +68,46 @@ Information.prototype.showDashboard = function () {
     divTable.setAttribute("id", "divTable");
     divTable.appendChild(table);
 
-    //butao add eventHandler
-    function newMonitorEventHandler(){
+    function newTicketEventHandler(){
         replaceChilds("divTable",document.createElement("div"));
-        document.getElementById("monitorForm").action="javascript: info.processingMonitor('create');";
-        document.getElementById("monitorForm").style.display="block";
+        document.getElementById("viewTicketForm").action="javascript: info.processingTicket('create');";
+        document.getElementById("viewTicketForm").style.display="block";
        
     }
-    createButton(divTable, newMonitorEventHandler, "Add Monitor", "btnCreate");
 
-    replaceChilds(this.id,document.createElement("div"));
-};
+    function updateTicketEventHandler(){
+        var idTicket= 0;
+        for (var i = 1; i<table.rows.length; i++) {
+            var checkBox = table.rows[i].cells[0].firstChild;
+            if (checkBox.checked){
+                idTicket = parseInt(table.rows[i].cells[1].firstChild.nodeValue);
+            }
+            
+        }
+        replaceChilds("divTable",document.createElement("div"));
+        document.getElementById("viewTicketForm").action="javascript: info.processingTicket('update');";
+        document.getElementById("viewTicketForm").style.display="block";
+        document.getElementById("id").value=idTicket;
+        document.getElementById("headerTicketId").innerHTML = "Ticket #"+idTicket;
+        document.getElementById("title").value=info.tickets[info.tickets.findIndex(i => i.ticket_id == idTicket)].ticket_title;
+        document.getElementById("desc").value=info.tickets[info.tickets.findIndex(i => i.ticket_id == idTicket)].ticket_description;
+        document.getElementById("priority").value=info.tickets[info.tickets.findIndex(i => i.ticket_id == idTicket)].ticket_priority;
+        document.getElementById("status").value=info.tickets[info.tickets.findIndex(i => i.ticket_id == idTicket)].ticket_status;
+    }
+    
+
+    createButton(divTable, newTicketEventHandler, "New Ticket", "btnCreate");
+    createButton(divTable, updateTicketEventHandler, "Update Ticket", "btnUpdate");
+    replaceChilds(this.id,divTable);
+
+
+}
 
 /**
  * Função genérica que cria um botão HTML, dá-lhe um evento e coloca-o na árvore de nós
  * @param {HTMLElement} fatherNode - nó pai do botão
  * @param {function} eventHandler - evento do botão.
  * @param {String} value - texto do botão.
- * @param {String} id - id do botão.
  */
 function createButton(fatherNode, eventHandler, value, id){
     var button = document.createElement("input");
@@ -127,11 +166,11 @@ function createCellCheckbox(){
     td.appendChild(check);
     return td;
 }
-
-Information.prototype.getMonitors = function (){
+//Função que que tem como principal objetivo solicitar ao servidor NODE.JS o recurso ticket através do verbo GET, usando pedidos assincronos e JSON
+Information.prototype.getTickets = function (){
     var monitors = this.monitors;
     var xhr = new XMLHttpRequest();
-    xhr.open("GET", "http://localhost:4000/dashboard/monitors", true);
+    xhr.open("GET", "http://localhost:4000/monitors", true);
     xhr.onreadystatechange = function () {
         if ((this.readyState === 4) && (this.status === 200)) {
             var response = JSON.parse(xhr.responseText);
@@ -142,3 +181,72 @@ Information.prototype.getMonitors = function (){
     };
     xhr.send();
 };
+
+//Função que que tem como principal objetivo solicitar ao servidor NODE.JS o recurso ranks através do verbo GET, usando pedidos assincronos e JSON
+Information.prototype.getRanks = function (){
+    var ranks = this.ranks;
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "http://localhost:8081/helpit/ranks", true);
+    xhr.onreadystatechange = function () {
+        if ((this.readyState === 4) && (this.status === 200)) {
+            var response = JSON.parse(xhr.responseText);
+            response.rank.forEach(function(current){
+                ranks.push(current);
+            });
+        }
+    };
+    xhr.send();
+};
+
+Information.prototype.removeTicket = function (id){
+    var info = this;
+    var xhr = new XMLHttpRequest();
+    xhr.open("DELETE", "http://localhost:8081/helpit/admin/delete-ticket/"+id, true);
+    xhr.onreadystatechange = function () {
+        if ((this.readyState === 4) && (this.status === 200)) {
+            info.tickets.splice(info.tickets.findIndex(i => i.ticket_id == id),1);
+            info.showPerson();
+        }
+    };
+    xhr.send();
+}
+
+/**
+ * Função que insere ou atualiza o recurso ticket com um pedido ao servidor NODE.JS através do verbo POST ou PUT, usando pedidos assincronos e JSON
+ *  * @param {String} action - controla qual a operação do CRUD queremos fazer
+ */
+Information.prototype.processingTicket = function (action) {
+    var info = this;
+    var ticket_id = document.getElementById("id").value;
+    var user_id = document.getElementById("user_id").value;
+    var ticket_title = document.getElementById("title").value;
+    var ticket_description = document.getElementById("desc").value;
+    var ticket_priority = document.getElementById("priority").value;
+    var ticket_status = document.getElementById("status").value;
+    var ticket = {ticket_id: ticket_id, user_id: user_id, ticket_title: ticket_title, ticket_description: ticket_description, ticket_priority: ticket_priority, ticket_status: ticket_status};
+    var xhr = new XMLHttpRequest();
+    xhr.responseType = "json";
+
+    if(action === "create") {
+        xhr.onreadystatechange = function () {
+            if ((xhr.readyState == XMLHttpRequest.DONE) && (this.status === 200)) {
+                var newTicket = new Ticket(xhr.response.insertId, user_id,ticket_title, ticket_description, ticket_priority, ticket_status);
+                info.tickets.push(newTicket);
+                info.showTickets();
+            }
+        }
+        xhr.open("POST", "http://localhost:8081/helpit/new-ticket", true);
+    }else if(action === "update"){
+        xhr.onreadystatechange = function () {
+            if ((xhr.readyState == XMLHttpRequest.DONE) && (this.status === 200)) {
+                info.tickets.splice(info.tickets.findIndex(i => i.ticket_id == ticket_id), 1);
+                info.tickets.push(ticket);
+                info.showTickets();
+            }
+        }
+        xhr.open("PUT", "http://localhost:8081/helpit/update-ticket/"+ticket_id, true);
+    }
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify(ticket));
+
+}
