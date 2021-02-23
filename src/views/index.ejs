@@ -18,11 +18,12 @@
   <div class="Texto-Pagina1">
     <p>O seu monitor de vigilância pessoal para que nada</p>
     <p>na sua vida lhe escape.</p>
-
-    <a href="" class="btn btn-secondary"> Login</a>
+    <% if(typeof user === 'undefined'){ %>
+      
+    <a href="/signin" class="btn btn-secondary"> Login</a>
     <br />
-    <a href="" class="btn btn-primary"> Registar</a>
-    
+    <a href="/signup" class="btn btn-primary"> Registar</a>
+    <% }%>
   </div>
   <div id="Link-Produto"></div>
 
