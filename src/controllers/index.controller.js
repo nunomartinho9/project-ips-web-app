@@ -4,15 +4,27 @@
 class IndexController {
 
     renderIndex(req, res){
-        res.render("index", {titleDocument : "Life Guardian", user: req.user});
+        if(typeof req.user != 'undefined') {
+          res.render("index", {titleDocument : "Life Guardian", user: req.user[0]});
+        }else {
+          res.render("index", {titleDocument : "Life Guardian"});
+        }
     }
 
     renderSignUp(req, res){
-        res.render("signup", {titleDocument : "Life Guardian", user: req.user});
+      if(typeof req.user != 'undefined') {
+        res.render("signup", {titleDocument : "Registar", user: req.user[0]});
+      }else {
+        res.render("signup", {titleDocument : "Registar"});
+      }
     }
 
     renderSignIn(req, res){
-        res.render("signin", {titleDocument : "Life Guardian", user: req.user});
+      if(typeof req.user != 'undefined') {
+        res.render("signin", {titleDocument : "Login", user: req.user[0]});
+      }else {
+        res.render("signin", {titleDocument : "Login"});
+      }
     }
 
     renderDashboard(req, res){
@@ -24,7 +36,7 @@ class IndexController {
   }
 
     renderViewMonitor(req, res){
-      res.render("dashboard-view-monitor", {titleDocument : "Monitores", user: req.user});
+      res.render("dashboard-view-monitor", {titleDocument : "Monitores", user: req.user[0]});
   }
 
 }
