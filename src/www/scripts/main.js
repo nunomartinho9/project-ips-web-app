@@ -25,6 +25,7 @@ window.onload = function (event) {
 function Information(id) {
     this.id = id;
     this.monitors = [];
+    this.data = [];
 };
 
 /**
@@ -37,6 +38,13 @@ function Monitor(monitor_id, user_id, title) {
     this.user_id = user_id;
     this.title = title;
 }
+function Data(info_id, monitor_id, temperature, humidity, movement, currentdate) {
+    this.info_id = info_id;
+    this.monitor_id = monitor_id;
+    this.temperature = temperature;
+    this.movement = movement;
+    this.currentdate = currentdate;
+}
 
 Information.prototype.loader = function() {
     var preloader = document.querySelector('.lds-ripple-page');
@@ -48,6 +56,7 @@ Information.prototype.loader = function() {
 
 //Mostrar todos os tickets, criar tabela e botôes
 Information.prototype.showMonitors = function () {
+    var info = this;
    document.getElementById("headerTitle").textContent="Dasboard";
    var ticketForm = document.getElementById("monitorForm").style.display="none";
     var table = document.createElement("table");
@@ -58,10 +67,47 @@ Information.prototype.showMonitors = function () {
     function eventHandler(event) {
         var id = event.currentTarget.id;
         console.log(id);
-        replaceChilds(this.id,document.createElement("div"));
+        replaceChilds(info.id,document.createElement("div"));
         //request da ultima info daquele monitor
-        //criar tabela
+        info.getData(id)
+        .then(function() {
+            console.log(info.data[0]);
+             //criar html
+        var div = document.createElement("div");
+        var markup = `<div class="Pagina1-monitores">
+        <div class="Titulo-Pagina1-monitores">
+            <p><i class="fas fa-desktop"></i>Monitor</p>
+        </div>
+        <div class="Pagina-centrar-monitores">
+            <table class="tabela-monitores">
+                <tr>
+                    <td class="linha1-tabela">
+                        <p class="tabela-titulos">Temperatura Atual</p>
+                        <div class="tabela-caixa1">
+                            <p class="pt-3">${info.data[0].temperature} ºC</p>
+                        </div>
+                    </td>
+                    <td class="linha1-tabela">
+                        <p class="tabela-titulos">Humidade Atual</p>
+                        <div class="tabela-caixa1 pl-4 pr-4">
+                            <p class="pt-3">${info.data[0].humidity} %</p>
+                        </div>
+                    </td>
+                    <td class="linha1-tabela">
+                        <p class="tabela-titulos">Movimento Atual</p>
+                        <div class="tabela-caixa2">
 
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <btn class="btn btn-primary text-center text-white botao-monitores">Visualizar Gráficos</btn>
+        </div>
+    </div>`;
+    div.innerHTML = markup;
+    replaceChilds(info.id, div);   
+        });
+       
     }
 
     for(var i=0;i<this.monitors.length;i++){
@@ -155,5 +201,21 @@ Information.prototype.getMonitors = function (){
     });
 };
 
-
+Information.prototype.getData = function(id) {
+    var data = this.data; 
+    return new Promise(function(resolve, reject) {
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "http://localhost:4000/dashboard/monitor/"+id, true);
+    xhr.onreadystatechange = function () {
+        if ((this.readyState === 4) && (this.status === 200)) {
+            var response = JSON.parse(xhr.responseText);
+            response.data.forEach(function(current) {
+            data.push(current);  
+            resolve(response);  
+            });
+        }
+    };
+    xhr.send();
+});
+}
 
