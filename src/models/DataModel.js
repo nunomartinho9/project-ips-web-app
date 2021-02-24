@@ -19,7 +19,7 @@ class DataModel {
   findOne(params, callback) {
     const { columnSet, values } = commonUtils.multipleColumnSet(params);
     conn.connect(function (err) {
-      let sql = mysql.format(`SELECT * FROM data WHERE ${columnSet}`, [
+      let sql = mysql.format(`SELECT * FROM info WHERE ${columnSet}`, [
         ...values]);
       conn.query(sql, function (err, rows) {
         callback(err, rows);
