@@ -5,7 +5,7 @@ const monitorController = require("../controllers/monitor.controller");
 /**
  *Roteamento
 */
-router.get("/monitors", monitorController.getAllMonitorsById);
+router.get("/dashboard/monitors", monitorController.getAllMonitorsById);
 router.get("/dashboard/monitor/:id", monitorController.getMonitorById);
 
 router.post("/dashboard/create-monitor", monitorController.createUpdateMonitor);

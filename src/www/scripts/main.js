@@ -7,9 +7,9 @@
 window.onload = function (event) {
     var info = new Information("divInformation");
     info.loader();
-    info.getTickets()
+    info.getMonitors()
     .then(function (){
-        info.showTickets();
+        info.showMonitors();
     });
     window.info = info;
 };
@@ -47,17 +47,26 @@ Information.prototype.loader = function() {
 
 
 //Mostrar todos os tickets, criar tabela e botôes
-Information.prototype.showTickets = function () {
+Information.prototype.showMonitors = function () {
    document.getElementById("headerTitle").textContent="Dasboard";
    var ticketForm = document.getElementById("monitorForm").style.display="none";
     var table = document.createElement("table");
-    table.id="tableTicket";
+    table.id="tableMonitor";
     table.classList.add("table", "table-hover");
     table.appendChild(tableLine(new Monitor(),true));
 
-    console.log(this.monitors[0]);
+    function eventHandler(event) {
+        var id = event.currentTarget.id;
+        console.log(id);
+        replaceChilds(this.id,document.createElement("div"));
+        //request da ultima info daquele monitor
+        //criar tabela
+
+    }
+
     for(var i=0;i<this.monitors.length;i++){
-        table.appendChild(tableLine(this.monitors[i],false));
+        
+        table.appendChild(tableLine(this.monitors[i],false, eventHandler,"btnView"));
     }
     var divTable = document.createElement("divTable");
     divTable.setAttribute("id", "divTable");
@@ -100,8 +109,6 @@ function replaceChilds(id, newSon) {
  */
 function tableLine(object, headerFormat, eventHandler) {
     var tr = document.createElement("tr");
-    if (!headerFormat) tr.appendChild(createCellCheckbox());
-    else tr.appendChild(document.createElement("th"));
     var tableCell = null;
     for (var property in object) {
         if ((object[property] instanceof Function)) 
@@ -115,7 +122,7 @@ function tableLine(object, headerFormat, eventHandler) {
         }
         tr.appendChild(tableCell); 
     }
-    //if(eventHandler!==undefined) createButton(tr, eventHandler, "view", object.ticket_id);
+    if (!headerFormat && eventHandler!==undefined) createButton(tr, eventHandler, "view", object.monitor_id);
     return tr;
 };
 /**
@@ -129,12 +136,12 @@ function createCellCheckbox(){
     return td;
 }
 //Função que que tem como principal objetivo solicitar ao servidor NODE.JS o recurso ticket através do verbo GET, usando pedidos assincronos e JSON
-Information.prototype.getTickets = function (){
+Information.prototype.getMonitors = function (){
     var monitors = this.monitors;
     return new Promise(function(resolve, reject) {
        
         var xhr = new XMLHttpRequest();
-        xhr.open("GET", "http://localhost:4000/monitors", true);
+        xhr.open("GET", "http://localhost:4000/dashboard/monitors", true);
         xhr.onreadystatechange = function () {
             if ((this.readyState === 4) && (this.status === 200)) {
                 var response = JSON.parse(xhr.responseText);
@@ -149,55 +156,4 @@ Information.prototype.getTickets = function (){
 };
 
 
-Information.prototype.removeTicket = function (id){
-    var info = this;
-    var xhr = new XMLHttpRequest();
-    xhr.open("DELETE", "http://localhost:8081/helpit/admin/delete-ticket/"+id, true);
-    xhr.onreadystatechange = function () {
-        if ((this.readyState === 4) && (this.status === 200)) {
-            info.tickets.splice(info.tickets.findIndex(i => i.ticket_id == id),1);
-            info.showPerson();
-        }
-    };
-    xhr.send();
-}
 
-/**
- * Função que insere ou atualiza o recurso ticket com um pedido ao servidor NODE.JS através do verbo POST ou PUT, usando pedidos assincronos e JSON
- *  * @param {String} action - controla qual a operação do CRUD queremos fazer
- */
-Information.prototype.processingTicket = function (action) {
-    var info = this;
-    var ticket_id = document.getElementById("id").value;
-    var user_id = document.getElementById("user_id").value;
-    var ticket_title = document.getElementById("title").value;
-    var ticket_description = document.getElementById("desc").value;
-    var ticket_priority = document.getElementById("priority").value;
-    var ticket_status = document.getElementById("status").value;
-    var ticket = {ticket_id: ticket_id, user_id: user_id, ticket_title: ticket_title, ticket_description: ticket_description, ticket_priority: ticket_priority, ticket_status: ticket_status};
-    var xhr = new XMLHttpRequest();
-    xhr.responseType = "json";
-
-    if(action === "create") {
-        xhr.onreadystatechange = function () {
-            if ((xhr.readyState == XMLHttpRequest.DONE) && (this.status === 200)) {
-                var newTicket = new Ticket(xhr.response.insertId, user_id,ticket_title, ticket_description, ticket_priority, ticket_status);
-                info.tickets.push(newTicket);
-                info.showTickets();
-            }
-        }
-        xhr.open("POST", "http://localhost:8081/helpit/new-ticket", true);
-    }else if(action === "update"){
-        xhr.onreadystatechange = function () {
-            if ((xhr.readyState == XMLHttpRequest.DONE) && (this.status === 200)) {
-                info.tickets.splice(info.tickets.findIndex(i => i.ticket_id == ticket_id), 1);
-                info.tickets.push(ticket);
-                info.showTickets();
-            }
-        }
-        xhr.open("PUT", "http://localhost:8081/helpit/update-ticket/"+ticket_id, true);
-    }
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.send(JSON.stringify(ticket));
-
-}
