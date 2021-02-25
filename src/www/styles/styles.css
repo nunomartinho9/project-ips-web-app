@@ -77,6 +77,10 @@ body {
   outline: 0 !important;
 }
 
+#btnAddMonitor{
+  margin-bottom: 9rem;
+}
+
 hr {
   box-sizing: content-box;
   height: 0;
