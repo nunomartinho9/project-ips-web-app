@@ -9,107 +9,105 @@
   }
 </style>
 <%- include('partials/navbar'); %>
-<main>
-  <div class="Titulo-Pagina1">
-    <p>Um monitor vital.</p>
-    <p>Seguro e Pessoal.</p>
-  </div>
-
-  <div class="Texto-Pagina1">
-    <p>O seu monitor de vigilância pessoal para que nada</p>
-    <p>na sua vida lhe escape.</p>
-    <% if(typeof user === 'undefined'){ %>
-      
-    <a href="/signin" class="btn btn-secondary"> Login</a>
-    <br />
-    <a href="/signup" class="btn btn-primary"> Registar</a>
-    <% }%>
-  </div>
-  <div id="Link-Produto"></div>
-
-  <div id="Texto-Pagina2">
-    <p class="Titulos-Home">O nosso produto.</p>
-    <hr
-      style="height: 2px; width: 7%; background-color: #868686; margin-top: 2%"
-    />
-    <a><img class="monitor" src="images/monitor.png" /></a>
-    <p class="titulo2">Monitor de Vigilância Ativa 24H/7</p>
-    <p class="texto">
-      Um monitor de vigilância 24 horas por dia, para que possa vigiar quem lhe
-      é mais importante.<br />
-      Equipado com sensores de movimento, temperatura e humidade.<br />
-      Este monitor é aquilo que faltava na sua vida.
-    </p>
-    <a href="" class="btn btn-primary">Ler mais</a>
-  </div>
-  
-  <div class="Pagina2-home mt-5">
+  <main>
     <div class="Titulo-Pagina1">
-      <p>O que pode fazer.</p>
-      <hr style="height: 2px; width: 7%; background-color: white; margin-top: 2%"/>
+      <p>Um monitor vital.</p>
+      <p>Seguro e Pessoal.</p>
     </div>
-    <table id="boxes-home" >
+
+    <div class="Texto-Pagina1">
+      <p>O seu monitor de vigilância pessoal para que nada</p>
+      <p>na sua vida lhe escape.</p>
+      <div class="home-botoes">
+        <% if(typeof user==='undefined' ){ %>
+
+          <a href="/signin" class="btn btn-secondary"> Login</a>
+          <br />
+          <a href="/signup" class="btn btn-primary"> Registar</a>
+          <% }%>
+      </div>
+    </div>
+    <div id="Link-Produto"></div>
+
+    <div id="Texto-Pagina2">
+      <p class="Titulos-Home">O nosso produto.</p>
+      <hr style="height: 2px; width: 7%; background-color: #868686; margin-top: 2%" />
+      <a><img class="monitor" src="images/monitor.png" /></a>
+      <p class="titulo2">Monitor de Vigilância Ativa 24H/7</p>
+      <p class="texto">
+        Um monitor de vigilância 24 horas por dia, para que possa vigiar quem lhe
+        é mais importante.<br />
+        Equipado com sensores de movimento, temperatura e humidade.<br />
+        Este monitor é aquilo que faltava na sua vida.
+      </p>
+      <a href="" class="btn btn-primary">Ler mais</a>
+    </div>
+
+    <div class="Pagina2-home mt-5">
+      <div class="Titulo-Pagina1">
+        <p>O que pode fazer.</p>
+        <hr style="height: 2px; width: 7%; background-color: white; margin-top: 2%" />
+      </div>
+      <table id="boxes-home">
+        <tr>
+          <td id="leftbox" class="mt-4">
+            <i class="fas fa-desktop"></i><br /><br />
+            <p class="textinho">
+              Gerir os seus monitores, para as suas preferencias
+            </p>
+          </td>
+          <td id="middlebox" class="mt-4">
+            <i class="fas fa-anchor bg-white text-dark"></i><br /><br />
+            <p class="textinho mt-1">Definir como quer que o sistema se comporte</p>
+          </td>
+          <td id="rightbox" class="mt-4">
+            <i class="fas fa-leaf"></i><br /><br />
+            <p class="textinho mt-3">
+              Ver estatísticas de utilização dos seus monitores e as suas
+              informações
+            </p>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div id="Link-Servicos"></div>
+    <div id="Texto-Pagina3">
+      <p class="Titulos-Home">Serviços para si.</p>
+      <hr style="height: 2px; width: 7%; background-color: #868686; margin-top: 2%" />
+    </div>
+    <br /><br />
+    <table id="boxes">
       <tr>
-        <td id="leftbox" class="mt-4">
-          <i class="fas fa-desktop"></i><br /><br />
+        <td id="leftbox">
+          <i class="fas fa-anchor"></i><br /><br />
+          <h2>Subscrição.</h2>
+          <br />
           <p class="textinho">
-            Gerir os seus monitores, para as suas preferencias
+            Um serviço de subscrição para que possa usufruir do nosso produto por
+            um período de 4 anos sem ter de o adquirir.
           </p>
         </td>
-        <td id="middlebox" class="mt-4">
-          <i class="fas fa-anchor bg-white text-dark"></i><br /><br />
-          <p class="textinho mt-1">Definir como quer que o sistema se comporte</p>
+        <td id="middlebox">
+          <i class="far fa-flag"></i><br /><br />
+          <h2>Apoio ao Cliente.</h2>
+          <br />
+          <p class="textinho">
+            Precisa de ajuda? Fale com a nossa equipa.<br />
+            Estamos disponíveis para ajudar 365 dias por ano.<br />
+            <b class="font-weight-bold">Contactos e redes sociais abaixo!</b>
+          </p>
         </td>
-        <td id="rightbox" class="mt-4">
-          <i class="fas fa-leaf"></i><br/><br/>
-          <p class="textinho mt-3" >
-            Ver estatísticas de utilização dos seus monitores e as suas
-            informações
+        <td id="rightbox">
+          <i class="fas fa-award"></i><br /><br />
+          <h2>Garantia.</h2>
+          <br />
+          <p class="textinho">
+            Mínimo de 2 anos de garantia para que o seu produto lhe traga
+            segurança e confiança até ao final do seu uso.
           </p>
         </td>
       </tr>
     </table>
-  </div>
-  <div id="Link-Servicos"></div>
-  <div id="Texto-Pagina3">
-    <p class="Titulos-Home">Serviços para si.</p>
-    <hr
-      style="height: 2px; width: 7%; background-color: #868686; margin-top: 2%"
-    />
-  </div>
-  <br /><br />
-  <table id="boxes">
-    <tr>
-      <td id="leftbox">
-        <i class="fas fa-anchor"></i><br /><br />
-        <h2>Subscrição.</h2>
-        <br />
-        <p class="textinho">
-          Um serviço de subscrição para que possa usufruir do nosso produto por
-          um período de 4 anos sem ter de o adquirir.
-        </p>
-      </td>
-      <td id="middlebox">
-        <i class="far fa-flag"></i><br /><br />
-        <h2>Apoio ao Cliente.</h2>
-        <br />
-        <p class="textinho">
-          Precisa de ajuda? Fale com a nossa equipa.<br />
-          Estamos disponíveis para ajudar 365 dias por ano.<br />
-          <b class="font-weight-bold">Contactos e redes sociais abaixo!</b>
-        </p>
-      </td>
-      <td id="rightbox">
-        <i class="fas fa-award"></i><br /><br />
-        <h2>Garantia.</h2>
-        <br />
-        <p class="textinho">
-          Mínimo de 2 anos de garantia para que o seu produto lhe traga
-          segurança e confiança até ao final do seu uso.
-        </p>
-      </td>
-    </tr>
-  </table>
-</main>
+  </main>
 
-<%- include('partials/footer'); %>
+  <%- include('partials/footer'); %>
