@@ -110,6 +110,31 @@ Information.prototype.showMonitors = function () {
        
     }
 
+    function newMonitorEventHandler(){
+        replaceChilds("divTable",document.createElement("div"));
+        document.getElementById("monitorForm").action="javascript: info.processingMonitor('create');";
+        document.getElementById("monitorForm").style.display="block";
+       
+    }
+
+    function updateMonitorEventHandler() {
+        var id = 0;
+        for (var i = 1; i<table.rows.length; i++) {
+            var checkBox = table.rows[i].cells[0].firstChild;
+            if (checkBox.checked){
+                id = parseInt(table.rows[i].cells[1].firstChild.nodeValue);
+            }   
+        }
+        replaceChilds("divTable",document.createElement("div"));
+        document.getElementById("monitorForm").action="javascript: info.processingMonitor('update');";
+        document.getElementById("monitorForm").style.display="block";
+        //document.getElementById("code").value=id;
+
+        document.getElementById("title").value=info.monitors[info.monitors.findIndex(i => i.monitor_id == id)].title;
+        document.getElementById("code").value=info.monitors[info.monitors.findIndex(i => i.monitor_id == id)].monitor_id;
+
+    }
+
     for(var i=0;i<this.monitors.length;i++){
         
         table.appendChild(tableLine(this.monitors[i],false, eventHandler,"btnView"));
@@ -117,6 +142,8 @@ Information.prototype.showMonitors = function () {
     var divTable = document.createElement("divTable");
     divTable.setAttribute("id", "divTable");
     divTable.appendChild(table);
+    createButton(divTable, newMonitorEventHandler, "Adicionar Monitor", "btnAddMonitor");
+    createButton(divTable, updateMonitorEventHandler, "Editar Monitor", "btnUpdateMonitor");
     replaceChilds(this.id,divTable);
 }
 
@@ -155,6 +182,8 @@ function replaceChilds(id, newSon) {
  */
 function tableLine(object, headerFormat, eventHandler) {
     var tr = document.createElement("tr");
+    if (!headerFormat) tr.appendChild(createCellCheckbox());
+    else tr.appendChild(document.createElement("th"));
     var tableCell = null;
     for (var property in object) {
         if ((object[property] instanceof Function)) 
@@ -232,7 +261,7 @@ Information.prototype.removeMonitor = function (id){
     xhr.send();
 }
 
-Information.prototype.processingTicket = function (action) {
+Information.prototype.processingMonitor = function (action) {
     var info = this;
     var monitor_id = document.getElementById("code").value;
     var user_id = document.getElementById("user_id").value;
@@ -246,7 +275,7 @@ Information.prototype.processingTicket = function (action) {
             if ((xhr.readyState == XMLHttpRequest.DONE) && (this.status === 200)) {
                 var newMonitor = new Monitor(monitor_id, user_id, title);
                 info.monitors.push(newMonitor);
-                //refresh
+                info.showMonitors();
             }
         }
         xhr.open("POST", "http://localhost:4000/dashboard/create-monitor", true);
@@ -255,12 +284,12 @@ Information.prototype.processingTicket = function (action) {
             if ((xhr.readyState == XMLHttpRequest.DONE) && (this.status === 200)) {
                 info.monitors.splice(info.monitors.findIndex(i => i.monitor_id == monitor_id), 1);
                 info.monitors.push(monitor);
-                //refresh
+                info.showMonitors();
             }
         }
         xhr.open("PUT", "http://localhost:4000/dashboard/update-monitor/"+monitor_id, true);
     }
     xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.send(JSON.stringify(ticket));
+    xhr.send(JSON.stringify(monitor));
 
 }

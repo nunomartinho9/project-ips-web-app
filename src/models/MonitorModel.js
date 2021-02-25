@@ -70,13 +70,13 @@ class MonitorModel {
    */
   update(params, id, callback) {
     const { columnSet, values } = commonUtils.multipleColumnSet(params); 
-    conn.connect(function (err) {
-      if (err) throw err;
+
+
       let sql = mysql.format(`UPDATE monitors SET ${columnSet} WHERE monitor_id = ?`, [...values, id]);
       conn.query(sql, function (err, rows) {
         callback(err, rows);
       });
-    }); 
+
 
   }
   /**

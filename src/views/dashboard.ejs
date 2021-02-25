@@ -6,27 +6,13 @@
     <div class="divInformation" id="divInformation"></div>
     <form action="javascript: info.processingMonitor('create');" id="monitorForm">
       <div class="form-group">
-        <input type="hidden" id="user_id" name="user_id" value="<%= user.user_id %>" required>
-        <input type="text" id="code" name="code" class="form-control" value="" required>
-        <input type="text" id="title" name="title" class="form-control" value="" required>
-        <input id="addMonitor" type="submit" value="Adicionar Monitor">
+        <input type="hidden" id="user_id" name="user_id" value="<%= user.user_id %>" required >
+        <input type="text" id="code" name="code" class="form-control" value="" placeholder="Digite o codigo do monitor..." required>
+        <input type="text" id="title" name="title" class="form-control" value="" placeholder="Digite o titulo do monitor..." required>
+        <input id="save" type="submit" value="Guardar">
       </div>
     </form>
 </main>
 
-<!--
-  <div class="Pagina1-menu">
-      <div class="Titulo-Pagina1-menu">
-          <p>Os seus monitores.</p>
-      </div>
-
-      <section class="menus">
-          <div class="one"><a class="fas fa-desktop" href=""></a>
-         <p class="menus-texto">Monitor 1</p></div>
-          <div class="two"><a class="fas fa-plus" href=""></a>
-          <p class="menus-texto">Adicionar Monitor</p></div>
-        </section>
-  </div> -->
-  
 
   <%- include('partials/footer'); %>
