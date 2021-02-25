@@ -219,3 +219,48 @@ Information.prototype.getData = function(id) {
 });
 }
 
+Information.prototype.removeMonitor = function (id){
+    var info = this;
+    var xhr = new XMLHttpRequest();
+    xhr.open("DELETE", "http://localhost:4000/dashboard/delete-monitor/"+id, true);
+    xhr.onreadystatechange = function () {
+        if ((this.readyState === 4) && (this.status === 200)) {
+            info.monitors.splice(info.monitors.findIndex(i => i.monitor_id == id),1);
+            //refresh
+        }
+    };
+    xhr.send();
+}
+
+Information.prototype.processingTicket = function (action) {
+    var info = this;
+    var monitor_id = document.getElementById("code").value;
+    var user_id = document.getElementById("user_id").value;
+    var title = document.getElementById("title").value;
+    var monitor = {monitor_id: monitor_id, user_id: user_id, title: title};
+    var xhr = new XMLHttpRequest();
+    xhr.responseType = "json";
+
+    if(action === "create") {
+        xhr.onreadystatechange = function () {
+            if ((xhr.readyState == XMLHttpRequest.DONE) && (this.status === 200)) {
+                var newMonitor = new Monitor(monitor_id, user_id, title);
+                info.monitors.push(newMonitor);
+                //refresh
+            }
+        }
+        xhr.open("POST", "http://localhost:4000/dashboard/create-monitor", true);
+    }else if(action === "update"){
+        xhr.onreadystatechange = function () {
+            if ((xhr.readyState == XMLHttpRequest.DONE) && (this.status === 200)) {
+                info.monitors.splice(info.monitors.findIndex(i => i.monitor_id == monitor_id), 1);
+                info.monitors.push(monitor);
+                //refresh
+            }
+        }
+        xhr.open("PUT", "http://localhost:4000/dashboard/update-monitor/"+monitor_id, true);
+    }
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify(ticket));
+
+}

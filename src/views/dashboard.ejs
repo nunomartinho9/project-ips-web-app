@@ -6,6 +6,7 @@
     <div class="divInformation" id="divInformation"></div>
     <form action="javascript: info.processingMonitor('create');" id="monitorForm">
       <div class="form-group">
+        <input type="hidden" id="user_id" name="user_id" value="<%= user.user_id %>" required>
         <input type="text" id="code" name="code" class="form-control" value="" required>
         <input type="text" id="title" name="title" class="form-control" value="" required>
         <input id="addMonitor" type="submit" value="Adicionar Monitor">
