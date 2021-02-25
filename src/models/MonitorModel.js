@@ -49,16 +49,12 @@ class MonitorModel {
    * @param {*} title 
    * @param {*} callback 
    */
-  create(user_id, code, title, callback) {
-      conn.connect(function(err) {
-        if (err) throw err;
-        let sql = mysql.format("INSERT INTO monitors(user_id, code, title) VALUES (?, ?, ?)", 
-        [user_id, code, title]);
-
+  create(monitor_id, user_id, title, callback) {
+        let sql = mysql.format("INSERT INTO monitors(monitor_id, user_id, title) VALUES (?, ?, ?)", [monitor_id, user_id, title]);
         conn.query(sql, function(err, rows) {
-          callback(err, rows.affectedRows);
+          callback(err, rows);
         });
-      });
+        
 
   }
 

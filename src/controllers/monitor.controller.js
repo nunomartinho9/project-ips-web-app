@@ -26,9 +26,8 @@ class MonitorController {
     }
     
     createUpdateMonitor(req, res) {
-        const {title, code} = req.body;
+        const {title, monitor_id} = req.body;
         const user_id = req.user[0].user_id;
-
         if(req.method === "PUT") {
             Monitor.update({title : title, monitor_id : req.params.id, user_id : user_id}, req.params.id, function(err, result) {
                 if(err) {
@@ -40,16 +39,14 @@ class MonitorController {
             });
 
         }else if(req.method === "POST") {
-            Monitor.create({monitor_id : code, user_id : user_id, title : title}, function(err, result) {
+            Monitor.create(monitor_id, user_id, title, function(err, result) {
                 if(err) {
                     console.log(err);
                     res.sendStatus(500);
                 }else {
-                    res.sendStatus(201);
                     res.send(result);
                 }
-                    
-                
+
             });
         }
     }

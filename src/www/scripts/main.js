@@ -276,6 +276,7 @@ Information.prototype.processingMonitor = function (action) {
                 var newMonitor = new Monitor(monitor_id, user_id, title);
                 info.monitors.push(newMonitor);
                 info.showMonitors();
+                console.log(info.monitors);
             }
         }
         xhr.open("POST", "http://localhost:4000/dashboard/create-monitor", true);
