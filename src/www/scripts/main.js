@@ -135,6 +135,17 @@ Information.prototype.showMonitors = function () {
 
     }
 
+    function deleteMonitorEventHandler() {
+        var table = document.getElementById("tableMonitor");
+        for (var i = 1, row; row = table.rows[i]; i++) {
+            var checkBox = row.cells[0].firstChild;
+            var idMonitor = row.cells[1].firstChild.nodeValue;
+            if (checkBox.checked) {
+                info.removeMonitor(idMonitor);
+            }
+        }
+    }
+
     for(var i=0;i<this.monitors.length;i++){
         
         table.appendChild(tableLine(this.monitors[i],false, eventHandler,"btnView"));
@@ -144,6 +155,7 @@ Information.prototype.showMonitors = function () {
     divTable.appendChild(table);
     createButton(divTable, newMonitorEventHandler, "Adicionar Monitor", "btnAddMonitor");
     createButton(divTable, updateMonitorEventHandler, "Editar Monitor", "btnUpdateMonitor");
+    //createButton(divTable, deleteMonitorEventHandler, "Remover Monitor", "btnDeleteMonitor");
     replaceChilds(this.id,divTable);
 }
 
@@ -254,8 +266,8 @@ Information.prototype.removeMonitor = function (id){
     xhr.open("DELETE", "http://localhost:4000/dashboard/delete-monitor/"+id, true);
     xhr.onreadystatechange = function () {
         if ((this.readyState === 4) && (this.status === 200)) {
-            info.monitors.splice(info.monitors.findIndex(i => i.monitor_id == id),1);
-            //refresh
+            info.monitors.splice(info.monitors.findIndex(i => i.monitor_id == monitor_id),1);
+            info.showMonitors();
         }
     };
     xhr.send();

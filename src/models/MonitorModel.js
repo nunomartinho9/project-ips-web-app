@@ -81,13 +81,10 @@ class MonitorModel {
    * @param {*} callback 
    */
   deleteOne(id, callback) {
-    conn.connect(function (err) {
-      if (err) throw err;
       let sql = mysql.format("DELETE FROM monitors WHERE monitor_id = ?", [id]);
       conn.query(sql, function (err, rows) {
         callback(err, rows.affectedRows);
       });
-    });
   }    
 
 }
