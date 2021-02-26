@@ -57,7 +57,7 @@ Information.prototype.loader = function() {
 //Mostrar todos os tickets, criar tabela e botôes
 Information.prototype.showMonitors = function () {
     var info = this;
-   document.getElementById("headerTitle").textContent="Dasboard";
+   document.getElementById("headerTitle").textContent="Dashboard";
    var ticketForm = document.getElementById("monitorForm").style.display="none";
     var table = document.createElement("table");
     table.id="tableMonitor";
