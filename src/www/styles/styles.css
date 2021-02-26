@@ -8414,6 +8414,10 @@ button.bg-dark:focus {
   margin-bottom: 9rem !important;
 }
 
+.mb-7{
+  margin-bottom: 12rem !important;
+}
+
 .ml-3,
 .mx-3 {
   margin-left: 1rem !important;
