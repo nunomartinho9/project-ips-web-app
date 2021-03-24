@@ -1,5 +1,5 @@
 # project-ips-web-app
-**My web app for my UNI final project.**
+**My web app for [IPS](https://www.ips.pt/ips_si/web_page.inicial) final project.**
 
 ### CONFIG:
 
@@ -28,4 +28,4 @@
 👉 Run the server locally in dev mode `npm run dev`
 
 
-👏 Done! 
+🚀 Done! 
